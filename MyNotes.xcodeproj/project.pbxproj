@@ -16,6 +16,7 @@
 		124C53A626CE950600FDD253 /* EditNoteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 124C53A526CE950600FDD253 /* EditNoteViewController.swift */; };
 		124C53AA26CE955B00FDD253 /* ListNoteTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 124C53A926CE955B00FDD253 /* ListNoteTableViewCell.swift */; };
 		124C53B226CE9F1000FDD253 /* Date+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 124C53B126CE9F1000FDD253 /* Date+Extension.swift */; };
+		2757F1945E38E371CFEE245B /* Pods_MyNotes.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 45EF98540E17275BF7E86145 /* Pods_MyNotes.framework */; };
 		424777542BFF271100A266DE /* MyNotes.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 424777522BFF271100A266DE /* MyNotes.xcdatamodeld */; };
 		4291D8FA2BF2559700420308 /* Note+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4291D8F82BF2559700420308 /* Note+CoreDataClass.swift */; };
 		4291D8FB2BF2559700420308 /* Note+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4291D8F92BF2559700420308 /* Note+CoreDataProperties.swift */; };
@@ -38,6 +39,9 @@
 		4291D8F82BF2559700420308 /* Note+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Note+CoreDataClass.swift"; sourceTree = "<group>"; };
 		4291D8F92BF2559700420308 /* Note+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Note+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		4291D8FC2BF2564200420308 /* CoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
+		45EF98540E17275BF7E86145 /* Pods_MyNotes.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MyNotes.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		CA28C8D05FEA1D4E21B3FD87 /* Pods-MyNotes.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MyNotes.release.xcconfig"; path = "Target Support Files/Pods-MyNotes/Pods-MyNotes.release.xcconfig"; sourceTree = "<group>"; };
+		D83E01FFE779A7623DE9210C /* Pods-MyNotes.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MyNotes.debug.xcconfig"; path = "Target Support Files/Pods-MyNotes/Pods-MyNotes.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -45,6 +49,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2757F1945E38E371CFEE245B /* Pods_MyNotes.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -56,6 +61,8 @@
 			children = (
 				124C538526CE867500FDD253 /* MyNotes */,
 				124C538426CE867500FDD253 /* Products */,
+				25095F0652EF98F5B7E2E840 /* Pods */,
+				3F4D4FBFC1AEFA4B43926629 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -128,6 +135,24 @@
 			path = Extensions;
 			sourceTree = "<group>";
 		};
+		25095F0652EF98F5B7E2E840 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				D83E01FFE779A7623DE9210C /* Pods-MyNotes.debug.xcconfig */,
+				CA28C8D05FEA1D4E21B3FD87 /* Pods-MyNotes.release.xcconfig */,
+			);
+			name = Pods;
+			path = Pods;
+			sourceTree = "<group>";
+		};
+		3F4D4FBFC1AEFA4B43926629 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				45EF98540E17275BF7E86145 /* Pods_MyNotes.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -135,6 +160,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 124C539726CE867800FDD253 /* Build configuration list for PBXNativeTarget "MyNotes" */;
 			buildPhases = (
+				93870CE0DA3070C15A849CBF /* [CP] Check Pods Manifest.lock */,
 				124C537F26CE867500FDD253 /* Sources */,
 				124C538026CE867500FDD253 /* Frameworks */,
 				124C538126CE867500FDD253 /* Resources */,
@@ -192,6 +218,31 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		93870CE0DA3070C15A849CBF /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-MyNotes-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		124C537F26CE867500FDD253 /* Sources */ = {
@@ -284,7 +335,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -339,7 +390,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -351,6 +402,7 @@
 		};
 		124C539826CE867800FDD253 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = D83E01FFE779A7623DE9210C /* Pods-MyNotes.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -371,6 +423,7 @@
 		};
 		124C539926CE867800FDD253 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = CA28C8D05FEA1D4E21B3FD87 /* Pods-MyNotes.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
