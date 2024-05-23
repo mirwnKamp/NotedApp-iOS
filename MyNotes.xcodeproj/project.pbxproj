@@ -16,7 +16,7 @@
 		124C53A626CE950600FDD253 /* EditNoteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 124C53A526CE950600FDD253 /* EditNoteViewController.swift */; };
 		124C53AA26CE955B00FDD253 /* ListNoteTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 124C53A926CE955B00FDD253 /* ListNoteTableViewCell.swift */; };
 		124C53B226CE9F1000FDD253 /* Date+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 124C53B126CE9F1000FDD253 /* Date+Extension.swift */; };
-		4291D8F32BF2545D00420308 /* MyNotes.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 4291D8F12BF2545D00420308 /* MyNotes.xcdatamodeld */; };
+		424777542BFF271100A266DE /* MyNotes.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 424777522BFF271100A266DE /* MyNotes.xcdatamodeld */; };
 		4291D8FA2BF2559700420308 /* Note+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4291D8F82BF2559700420308 /* Note+CoreDataClass.swift */; };
 		4291D8FB2BF2559700420308 /* Note+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4291D8F92BF2559700420308 /* Note+CoreDataProperties.swift */; };
 		4291D8FD2BF2564200420308 /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4291D8FC2BF2564200420308 /* CoreDataManager.swift */; };
@@ -34,7 +34,7 @@
 		124C53A526CE950600FDD253 /* EditNoteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditNoteViewController.swift; sourceTree = "<group>"; };
 		124C53A926CE955B00FDD253 /* ListNoteTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListNoteTableViewCell.swift; sourceTree = "<group>"; };
 		124C53B126CE9F1000FDD253 /* Date+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Extension.swift"; sourceTree = "<group>"; };
-		4291D8F22BF2545D00420308 /* MyNotes.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = MyNotes.xcdatamodel; sourceTree = "<group>"; };
+		424777532BFF271100A266DE /* MyNotes.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = MyNotes.xcdatamodel; sourceTree = "<group>"; };
 		4291D8F82BF2559700420308 /* Note+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Note+CoreDataClass.swift"; sourceTree = "<group>"; };
 		4291D8F92BF2559700420308 /* Note+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Note+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		4291D8FC2BF2564200420308 /* CoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
@@ -97,8 +97,8 @@
 			children = (
 				4291D8F82BF2559700420308 /* Note+CoreDataClass.swift */,
 				4291D8F92BF2559700420308 /* Note+CoreDataProperties.swift */,
-				4291D8F12BF2545D00420308 /* MyNotes.xcdatamodeld */,
 				4291D8FC2BF2564200420308 /* CoreDataManager.swift */,
+				424777522BFF271100A266DE /* MyNotes.xcdatamodeld */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -201,9 +201,9 @@
 				124C538726CE867500FDD253 /* AppDelegate.swift in Sources */,
 				124C53A126CE947600FDD253 /* ListNotesViewController.swift in Sources */,
 				124C53A626CE950600FDD253 /* EditNoteViewController.swift in Sources */,
-				4291D8F32BF2545D00420308 /* MyNotes.xcdatamodeld in Sources */,
 				124C53AA26CE955B00FDD253 /* ListNoteTableViewCell.swift in Sources */,
 				124C53B226CE9F1000FDD253 /* Date+Extension.swift in Sources */,
+				424777542BFF271100A266DE /* MyNotes.xcdatamodeld in Sources */,
 				4291D8FA2BF2559700420308 /* Note+CoreDataClass.swift in Sources */,
 				4291D8FB2BF2559700420308 /* Note+CoreDataProperties.swift in Sources */,
 				4291D8FD2BF2564200420308 /* CoreDataManager.swift in Sources */,
@@ -354,15 +354,16 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 6UAA8A2U3S;
+				CODE_SIGN_STYLE = Manual;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = MyNotes/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.macco.MyNotes;
+				PRODUCT_BUNDLE_IDENTIFIER = com.myron.MyNotes;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -373,15 +374,16 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 6UAA8A2U3S;
+				CODE_SIGN_STYLE = Manual;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = MyNotes/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.macco.MyNotes;
+				PRODUCT_BUNDLE_IDENTIFIER = com.myron.MyNotes;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -411,14 +413,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCVersionGroup section */
-		4291D8F12BF2545D00420308 /* MyNotes.xcdatamodeld */ = {
+		424777522BFF271100A266DE /* MyNotes.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
-				4291D8F22BF2545D00420308 /* MyNotes.xcdatamodel */,
+				424777532BFF271100A266DE /* MyNotes.xcdatamodel */,
 			);
-			currentVersion = 4291D8F22BF2545D00420308 /* MyNotes.xcdatamodel */;
+			currentVersion = 424777532BFF271100A266DE /* MyNotes.xcdatamodel */;
 			name = MyNotes.xcdatamodeld;
-			path = "/Users/mkampourakis/Desktop/external projects/ios-tutorials-my-notes-starter/MyNotes/Models/MyNotes.xcdatamodeld";
+			path = "/Users/mkampourakis/Desktop/external projects/NotedApp-iOS/MyNotes/Models/MyNotes.xcdatamodeld";
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;
 		};
