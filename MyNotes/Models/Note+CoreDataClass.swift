@@ -2,8 +2,7 @@
 //  Note+CoreDataClass.swift
 //  MyNotes
 //
-//  Created by M-STAT S.A. IT on 13/5/24.
-//
+//  Created by Myron Kampourakis on 13/5/24.
 //
 
 import Foundation

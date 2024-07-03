@@ -2,26 +2,52 @@
 //  ListNotesViewController.swift
 //  MyNotes
 //
-//  Created by M-STAT S.A. IT on 13/5/24.
+//  Created Myron Kampourakis on 13/5/24.
 //
 
 import UIKit
 import CoreData
+import CHTCollectionViewWaterfallLayout
 
-class ListNotesViewController: UIViewController {
+class ListNotesViewController: UIViewController, AlertPresentableVC {
     
-    @IBOutlet weak private var tableView: UITableView!
+    private let collectionView: UICollectionView = {
+        let layout = CHTCollectionViewWaterfallLayout()
+        layout.itemRenderDirection = .leftToRight
+        layout.columnCount = 2
+        let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
+        collectionView.contentInset = .init(top: 0, left: 8, bottom: 8, right: 8)
+        collectionView.register(CollectionViewCell.self, forCellWithReuseIdentifier: CollectionViewCell.identifier)
+        collectionView.translatesAutoresizingMaskIntoConstraints = false
+        return collectionView
+    }()
+    
+    @IBOutlet weak var bottomBar: UIView!
     @IBOutlet weak private var notesCountLbl: UILabel!
     private let searchController = UISearchController()
     private var fetchedResultsController: NSFetchedResultsController<Note>!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         self.navigationController?.navigationBar.shadowImage = UIImage()
-        tableView.contentInset = .init(top: 0, left: 0, bottom: 30, right: 0)
+        view.addSubview(collectionView)
+        view.sendSubviewToBack(collectionView)
+        collectionView.delegate = self
+        collectionView.dataSource = self
         configureSearchBar()
         setupFetchedResultController()
         refreshCountLbl()
+        setupConstraints()
+    }
+    
+    private func setupConstraints() {
+        NSLayoutConstraint.activate([
+            collectionView.topAnchor.constraint(equalTo: view.topAnchor),
+            collectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            collectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            collectionView.bottomAnchor.constraint(equalTo: bottomBar.topAnchor)
+        ])
     }
     
     func refreshCountLbl() {
@@ -34,9 +60,10 @@ class ListNotesViewController: UIViewController {
         try? fetchedResultsController.performFetch()
         refreshCountLbl()
     }
-
+    
     private func configureSearchBar() {
         navigationItem.searchController = searchController
+        navigationItem.hidesSearchBarWhenScrolling = false
         searchController.obscuresBackgroundDuringPresentation = false
         searchController.searchBar.delegate = self
         searchController.delegate = self
@@ -52,7 +79,7 @@ class ListNotesViewController: UIViewController {
         navigationController?.pushViewController(controller, animated: true)
     }
     
-// MARK: -Methods to implement
+    // MARK: -Methods to implement
     private func createNote() -> Note {
         let note = CoreDataManager.shared.createNote()
         return note
@@ -60,43 +87,90 @@ class ListNotesViewController: UIViewController {
     
     private func deleteNoteFromStorage(_ note: Note) {
         CoreDataManager.shared.deleteNote(note)
+        try? fetchedResultsController.performFetch()
+        collectionView.reloadData()
+        refreshCountLbl()
     }
 }
 
-// MARK: -TableView Configuration
-extension ListNotesViewController: UITableViewDataSource, UITableViewDelegate {
+
+// MARK: -CollectionView Configuration
+extension ListNotesViewController: UICollectionViewDelegate, UICollectionViewDataSource, CHTCollectionViewDelegateWaterfallLayout {
     
-    func numberOfSections(in tableView: UITableView) -> Int {
-        return fetchedResultsController.sections?.count ?? 1
+    func numberOfSections(in collectionView: UICollectionView) -> Int {
+        return 1
     }
     
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         let notes = fetchedResultsController.sections![section]
         return notes.numberOfObjects
     }
     
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: ListNoteTableViewCell.identifier) as! ListNoteTableViewCell
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CollectionViewCell.identifier, for: indexPath) as! CollectionViewCell
         let note = fetchedResultsController.object(at: indexPath)
         cell.setup(note: note)
+        
+        // Add long press gesture recognizer
+        let longPressGesture = UILongPressGestureRecognizer(target: self, action: #selector(handleLongPress(_:)))
+        cell.addGestureRecognizer(longPressGesture)
+        
         return cell
     }
     
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    @objc func handleLongPress(_ gesture: UILongPressGestureRecognizer) {
+        guard gesture.state == .began else { return }
+        
+        if let cell = gesture.view as? UICollectionViewCell, let indexPath = collectionView.indexPath(for: cell) {
+            let note = fetchedResultsController.object(at: indexPath)
+            
+            cell.fround(with: 15, borderWidth: 1, color: UIColor.red)
+            
+            self.presentAlert(.deleteAlert(title: "Delete Note", description: "Are you sure you want to delete this note?", actionAfterHide: {
+                self.deleteNoteFromStorage(note)
+                cell.fround(with: 15, borderWidth: 0, color: UIColor.clear)
+            }, secondAction: {
+                cell.fround(with: 15, borderWidth: 0, color: UIColor.clear)
+            }))
+        }
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        let note = fetchedResultsController.object(at: indexPath)
+        
+        let width = view.frame.width / 2
+        
+        let horizontalPadding: CGFloat = 20.0
+        
+        // Calculate heights of the title and description texts
+        let titleHeight = calculateHeightForText(note.title, width: width)
+        let descHeight = calculateHeightForText("\(String(describing: note.lastUpdated))" + note.desc, width: width)
+        
+        // Total height calculation
+        let height = titleHeight + descHeight
+        
+        switch height {
+        case ..<80 :
+            return CGSize(width: width, height: height + horizontalPadding)
+        case 150...:
+            return CGSize(width: width, height: height - horizontalPadding)
+        default:
+            return CGSize(width: width, height: height)
+        }
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let note = fetchedResultsController.object(at: indexPath)
         goToEditNote(note)
     }
     
-    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-        if editingStyle == .delete {
-            let note = fetchedResultsController.object(at: indexPath)
-            deleteNoteFromStorage(note)
-        }
+    func calculateHeightForText(_ text: String, width: CGFloat) -> CGFloat {
+        let constraintRect = CGSize(width: width, height: .greatestFiniteMagnitude)
+        let boundingBox = text.boundingRect(with: constraintRect, options: .usesLineFragmentOrigin, attributes: [.font: UIFont.systemFont(ofSize: 17)], context: nil)
+        
+        return ceil(boundingBox.height)
     }
     
-    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        return true
-    }
 }
 
 // MARK: -Search Controller Configuration
@@ -116,32 +190,45 @@ extension ListNotesViewController: UISearchControllerDelegate, UISearchBarDelega
     
     func search(_ query: String) {
         if query.count >= 1 {
-           setupFetchedResultController(filter: query)
+            setupFetchedResultController(filter: query)
         } else{
             setupFetchedResultController()
         }
         
-        tableView.reloadData()
+        collectionView.reloadData()
     }
 }
 
 // MARK: -NSFetchResultController Delegate
 extension ListNotesViewController: NSFetchedResultsControllerDelegate {
-    func controllerWillChangeContent(_ controller: NSFetchedResultsController<any NSFetchRequestResult>) {
-        tableView.beginUpdates()
+    func controllerWillChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
+        collectionView.performBatchUpdates(nil, completion: nil)
     }
     
-    func controllerDidChangeContent(_ controller: NSFetchedResultsController<any NSFetchRequestResult>) {
-        tableView.endUpdates()
+    func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
+        collectionView.performBatchUpdates(nil, completion: nil)
     }
     
-    func controller(_ controller: NSFetchedResultsController<any NSFetchRequestResult>, didChange anObject: Any, at indexPath: IndexPath?, for type: NSFetchedResultsChangeType, newIndexPath: IndexPath?) {
+    func controller(_ controller: NSFetchedResultsController<NSFetchRequestResult>, didChange anObject: Any, at indexPath: IndexPath?, for type: NSFetchedResultsChangeType, newIndexPath: IndexPath?) {
         switch type {
-        case .insert: tableView.insertRows(at: [newIndexPath!], with: .automatic)
-        case .delete: tableView.deleteRows(at: [indexPath!], with: .automatic)
-        case .update: tableView.reloadRows(at: [indexPath!], with: .automatic)
-        case .move: tableView.moveRow(at: indexPath!, to: newIndexPath!)
-        default: tableView.reloadData()
+        case .insert:
+            if let newIndexPath = newIndexPath {
+                collectionView.insertItems(at: [newIndexPath])
+            }
+        case .delete:
+            if let indexPath = indexPath {
+                collectionView.deleteItems(at: [indexPath])
+            }
+        case .update:
+            if let indexPath = indexPath {
+                collectionView.reloadItems(at: [indexPath])
+            }
+        case .move:
+            if let indexPath = indexPath, let newIndexPath = newIndexPath {
+                collectionView.moveItem(at: indexPath, to: newIndexPath)
+            }
+        @unknown default:
+            collectionView.reloadData()
         }
         refreshCountLbl()
     }

@@ -2,13 +2,11 @@
 //  Note+CoreDataProperties.swift
 //  MyNotes
 //
-//  Created by M-STAT S.A. IT on 23/5/24.
-//
+//  Created by Myron Kampourakis on 23/5/24.
 //
 
 import Foundation
 import CoreData
-
 
 extension Note {
 

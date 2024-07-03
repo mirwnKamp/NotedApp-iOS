@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 54;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -14,10 +14,16 @@
 		124C539326CE867800FDD253 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 124C539126CE867800FDD253 /* LaunchScreen.storyboard */; };
 		124C53A126CE947600FDD253 /* ListNotesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 124C53A026CE947600FDD253 /* ListNotesViewController.swift */; };
 		124C53A626CE950600FDD253 /* EditNoteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 124C53A526CE950600FDD253 /* EditNoteViewController.swift */; };
-		124C53AA26CE955B00FDD253 /* ListNoteTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 124C53A926CE955B00FDD253 /* ListNoteTableViewCell.swift */; };
 		124C53B226CE9F1000FDD253 /* Date+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 124C53B126CE9F1000FDD253 /* Date+Extension.swift */; };
 		2757F1945E38E371CFEE245B /* Pods_MyNotes.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 45EF98540E17275BF7E86145 /* Pods_MyNotes.framework */; };
 		424777542BFF271100A266DE /* MyNotes.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 424777522BFF271100A266DE /* MyNotes.xcdatamodeld */; };
+		427049702C340B720065842E /* UIView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4270496F2C340B720065842E /* UIView+Extension.swift */; };
+		427049742C343BF40065842E /* AlertVC+Main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 427049732C343BF40065842E /* AlertVC+Main.swift */; };
+		427049762C343C2D0065842E /* AlertVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 427049752C343C2D0065842E /* AlertVC.swift */; };
+		427049782C343C560065842E /* AlertPresentableVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 427049772C343C560065842E /* AlertPresentableVC.swift */; };
+		4270497A2C343C7B0065842E /* AlertPresentableVC+Main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 427049792C343C7B0065842E /* AlertPresentableVC+Main.swift */; };
+		4270497C2C343CB20065842E /* AlertPresentableVC+Generic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4270497B2C343CB20065842E /* AlertPresentableVC+Generic.swift */; };
+		428174B22C00C3B90099D748 /* CollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 428174B12C00C3B90099D748 /* CollectionViewCell.swift */; };
 		4291D8FA2BF2559700420308 /* Note+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4291D8F82BF2559700420308 /* Note+CoreDataClass.swift */; };
 		4291D8FB2BF2559700420308 /* Note+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4291D8F92BF2559700420308 /* Note+CoreDataProperties.swift */; };
 		4291D8FD2BF2564200420308 /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4291D8FC2BF2564200420308 /* CoreDataManager.swift */; };
@@ -33,9 +39,15 @@
 		124C539426CE867800FDD253 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		124C53A026CE947600FDD253 /* ListNotesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListNotesViewController.swift; sourceTree = "<group>"; };
 		124C53A526CE950600FDD253 /* EditNoteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditNoteViewController.swift; sourceTree = "<group>"; };
-		124C53A926CE955B00FDD253 /* ListNoteTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListNoteTableViewCell.swift; sourceTree = "<group>"; };
 		124C53B126CE9F1000FDD253 /* Date+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Extension.swift"; sourceTree = "<group>"; };
 		424777532BFF271100A266DE /* MyNotes.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = MyNotes.xcdatamodel; sourceTree = "<group>"; };
+		4270496F2C340B720065842E /* UIView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extension.swift"; sourceTree = "<group>"; };
+		427049732C343BF40065842E /* AlertVC+Main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AlertVC+Main.swift"; sourceTree = "<group>"; };
+		427049752C343C2D0065842E /* AlertVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertVC.swift; sourceTree = "<group>"; };
+		427049772C343C560065842E /* AlertPresentableVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertPresentableVC.swift; sourceTree = "<group>"; };
+		427049792C343C7B0065842E /* AlertPresentableVC+Main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AlertPresentableVC+Main.swift"; sourceTree = "<group>"; };
+		4270497B2C343CB20065842E /* AlertPresentableVC+Generic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AlertPresentableVC+Generic.swift"; sourceTree = "<group>"; };
+		428174B12C00C3B90099D748 /* CollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewCell.swift; sourceTree = "<group>"; };
 		4291D8F82BF2559700420308 /* Note+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Note+CoreDataClass.swift"; sourceTree = "<group>"; };
 		4291D8F92BF2559700420308 /* Note+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Note+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		4291D8FC2BF2564200420308 /* CoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
@@ -79,13 +91,14 @@
 			children = (
 				124C538626CE867500FDD253 /* AppDelegate.swift */,
 				124C538826CE867500FDD253 /* SceneDelegate.swift */,
-				124C538C26CE867500FDD253 /* Main.storyboard */,
-				124C538F26CE867800FDD253 /* Assets.xcassets */,
-				124C539126CE867800FDD253 /* LaunchScreen.storyboard */,
+				427049712C343BC60065842E /* Features */,
 				124C53B026CE9F0300FDD253 /* Extensions */,
 				124C539D26CE943800FDD253 /* Models */,
 				124C539B26CE941900FDD253 /* Views */,
 				124C539426CE867800FDD253 /* Info.plist */,
+				124C538C26CE867500FDD253 /* Main.storyboard */,
+				124C539126CE867800FDD253 /* LaunchScreen.storyboard */,
+				124C538F26CE867800FDD253 /* Assets.xcassets */,
 			);
 			path = MyNotes;
 			sourceTree = "<group>";
@@ -114,7 +127,7 @@
 			isa = PBXGroup;
 			children = (
 				124C53A026CE947600FDD253 /* ListNotesViewController.swift */,
-				124C53A926CE955B00FDD253 /* ListNoteTableViewCell.swift */,
+				428174B12C00C3B90099D748 /* CollectionViewCell.swift */,
 			);
 			path = ListNotes;
 			sourceTree = "<group>";
@@ -131,6 +144,7 @@
 			isa = PBXGroup;
 			children = (
 				124C53B126CE9F1000FDD253 /* Date+Extension.swift */,
+				4270496F2C340B720065842E /* UIView+Extension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -141,7 +155,6 @@
 				D83E01FFE779A7623DE9210C /* Pods-MyNotes.debug.xcconfig */,
 				CA28C8D05FEA1D4E21B3FD87 /* Pods-MyNotes.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -151,6 +164,26 @@
 				45EF98540E17275BF7E86145 /* Pods_MyNotes.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		427049712C343BC60065842E /* Features */ = {
+			isa = PBXGroup;
+			children = (
+				427049722C343BDE0065842E /* Alerts */,
+			);
+			path = Features;
+			sourceTree = "<group>";
+		};
+		427049722C343BDE0065842E /* Alerts */ = {
+			isa = PBXGroup;
+			children = (
+				427049732C343BF40065842E /* AlertVC+Main.swift */,
+				427049752C343C2D0065842E /* AlertVC.swift */,
+				427049772C343C560065842E /* AlertPresentableVC.swift */,
+				427049792C343C7B0065842E /* AlertPresentableVC+Main.swift */,
+				4270497B2C343CB20065842E /* AlertPresentableVC+Generic.swift */,
+			);
+			path = Alerts;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -164,6 +197,7 @@
 				124C537F26CE867500FDD253 /* Sources */,
 				124C538026CE867500FDD253 /* Frameworks */,
 				124C538126CE867500FDD253 /* Resources */,
+				EA5FDD672FD334CF696B6C1E /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -242,6 +276,23 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
+		EA5FDD672FD334CF696B6C1E /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-MyNotes/Pods-MyNotes-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-MyNotes/Pods-MyNotes-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-MyNotes/Pods-MyNotes-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -251,14 +302,20 @@
 			files = (
 				124C538726CE867500FDD253 /* AppDelegate.swift in Sources */,
 				124C53A126CE947600FDD253 /* ListNotesViewController.swift in Sources */,
+				4270497C2C343CB20065842E /* AlertPresentableVC+Generic.swift in Sources */,
 				124C53A626CE950600FDD253 /* EditNoteViewController.swift in Sources */,
-				124C53AA26CE955B00FDD253 /* ListNoteTableViewCell.swift in Sources */,
+				427049762C343C2D0065842E /* AlertVC.swift in Sources */,
 				124C53B226CE9F1000FDD253 /* Date+Extension.swift in Sources */,
 				424777542BFF271100A266DE /* MyNotes.xcdatamodeld in Sources */,
+				427049702C340B720065842E /* UIView+Extension.swift in Sources */,
+				4270497A2C343C7B0065842E /* AlertPresentableVC+Main.swift in Sources */,
+				427049782C343C560065842E /* AlertPresentableVC.swift in Sources */,
 				4291D8FA2BF2559700420308 /* Note+CoreDataClass.swift in Sources */,
 				4291D8FB2BF2559700420308 /* Note+CoreDataProperties.swift in Sources */,
 				4291D8FD2BF2564200420308 /* CoreDataManager.swift in Sources */,
 				124C538926CE867500FDD253 /* SceneDelegate.swift in Sources */,
+				427049742C343BF40065842E /* AlertVC+Main.swift in Sources */,
+				428174B22C00C3B90099D748 /* CollectionViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -406,6 +463,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = MyNotes/Info.plist;
@@ -427,6 +485,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = MyNotes/Info.plist;
