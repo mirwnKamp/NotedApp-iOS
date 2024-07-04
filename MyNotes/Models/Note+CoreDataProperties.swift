@@ -18,7 +18,7 @@ extension Note {
     @NSManaged public var id: UUID!
     @NSManaged public var lastUpdated: Date!
     @NSManaged public var title: String!
-
+    @NSManaged public var canvasData: Data!
 }
 
 extension Note : Identifiable {

@@ -6,8 +6,9 @@
 //
 
 import UIKit
+import PencilKit
 
-class EditNoteViewController: UIViewController {
+class EditNoteViewController: UIViewController, PKCanvasViewDelegate {
     
     static let identifier = "EditNoteViewController"
     var note: Note!
@@ -15,10 +16,13 @@ class EditNoteViewController: UIViewController {
     @IBOutlet weak private var titleView: UITextView!
     @IBOutlet weak private var descriptionView: UITextView!
     @IBOutlet weak var titleViewHeightConstraint: NSLayoutConstraint!
+    private let drawView = DrawView.newAutoLayoutView()
+    private var isDrawingEnabled = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
+        drawView.canvasView.delegate = self
         NotificationCenter.default.addObserver(self, selector: #selector(titleViewContentSizeDidChange), name: UITextView.textDidChangeNotification, object: titleView)
     }
     
@@ -37,6 +41,9 @@ class EditNoteViewController: UIViewController {
         let backButtonImage = UIImage(systemName: "arrow.backward.circle.fill")
         let backButton = UIBarButtonItem(image: backButtonImage, style: .plain, target: self, action: #selector(backButtonTapped))
         self.navigationItem.leftBarButtonItem = backButton
+        let addButtonImage = UIImage(systemName: "cross.circle.fill")
+        let addButton = UIBarButtonItem(image: addButtonImage, style: .plain, target: self, action: #selector(addButtonTapped))
+        self.navigationItem.rightBarButtonItem = addButton
         
         titleView.isScrollEnabled = false
         titleView.text = note?.titleNote
@@ -52,9 +59,20 @@ class EditNoteViewController: UIViewController {
             descriptionView.text = "Note"
             descriptionView.textColor = .lightGray
         }
+        if let drawingData = note?.canvasData, let drawing = try? PKDrawing(data: drawingData) {
+            drawView.canvasView.drawing = drawing
+        } else {
+            drawView.canvasView.drawing = PKDrawing()
+        }
+
         
         titleView.delegate = self
         descriptionView.delegate = self
+        
+        view.addSubview(drawView)
+        drawView.fillToSuperview()
+    
+        toggleDrawing(isEnabled: false)
     }
     
     @objc func backButtonTapped() {
@@ -67,6 +85,20 @@ class EditNoteViewController: UIViewController {
         self.navigationController?.popViewController(animated: true)
     }
     
+    @objc  func addButtonTapped() {
+        isDrawingEnabled.toggle()
+        toggleDrawing(isEnabled: isDrawingEnabled)
+    }
+    
+    private func toggleDrawing(isEnabled: Bool) {
+        titleView.isUserInteractionEnabled = !isEnabled
+        descriptionView.isUserInteractionEnabled = !isEnabled
+        drawView.toolPicker.setVisible(isEnabled, forFirstResponder: drawView.canvasView)
+        drawView.toolPicker.addObserver(drawView.canvasView)
+        drawView.canvasView.becomeFirstResponder()
+        drawView.isUserInteractionEnabled = isEnabled
+    }
+    
     // MARK: -Methods to implement
     private func updateNote() {
         note.lastUpdated = Date()
@@ -75,6 +107,10 @@ class EditNoteViewController: UIViewController {
     
     private func deleteNote() {
         CoreDataManager.shared.deleteNote(note)
+    }
+    
+    func canvasViewDrawingDidChange(_ canvasView: PKCanvasView) {
+        note.canvasData = canvasView.drawing.dataRepresentation()
     }
 }
 

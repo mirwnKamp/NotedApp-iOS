@@ -23,6 +23,7 @@
 		427049782C343C560065842E /* AlertPresentableVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 427049772C343C560065842E /* AlertPresentableVC.swift */; };
 		4270497A2C343C7B0065842E /* AlertPresentableVC+Main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 427049792C343C7B0065842E /* AlertPresentableVC+Main.swift */; };
 		4270497C2C343CB20065842E /* AlertPresentableVC+Generic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4270497B2C343CB20065842E /* AlertPresentableVC+Generic.swift */; };
+		427CAE1E2C36865E00518CB4 /* DrawView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 427CAE1D2C36865E00518CB4 /* DrawView.swift */; };
 		428174B22C00C3B90099D748 /* CollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 428174B12C00C3B90099D748 /* CollectionViewCell.swift */; };
 		4291D8FA2BF2559700420308 /* Note+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4291D8F82BF2559700420308 /* Note+CoreDataClass.swift */; };
 		4291D8FB2BF2559700420308 /* Note+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4291D8F92BF2559700420308 /* Note+CoreDataProperties.swift */; };
@@ -47,6 +48,7 @@
 		427049772C343C560065842E /* AlertPresentableVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertPresentableVC.swift; sourceTree = "<group>"; };
 		427049792C343C7B0065842E /* AlertPresentableVC+Main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AlertPresentableVC+Main.swift"; sourceTree = "<group>"; };
 		4270497B2C343CB20065842E /* AlertPresentableVC+Generic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AlertPresentableVC+Generic.swift"; sourceTree = "<group>"; };
+		427CAE1D2C36865E00518CB4 /* DrawView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrawView.swift; sourceTree = "<group>"; };
 		428174B12C00C3B90099D748 /* CollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewCell.swift; sourceTree = "<group>"; };
 		4291D8F82BF2559700420308 /* Note+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Note+CoreDataClass.swift"; sourceTree = "<group>"; };
 		4291D8F92BF2559700420308 /* Note+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Note+CoreDataProperties.swift"; sourceTree = "<group>"; };
@@ -136,6 +138,7 @@
 			isa = PBXGroup;
 			children = (
 				124C53A526CE950600FDD253 /* EditNoteViewController.swift */,
+				427CAE1D2C36865E00518CB4 /* DrawView.swift */,
 			);
 			path = EditNote;
 			sourceTree = "<group>";
@@ -313,6 +316,7 @@
 				4291D8FA2BF2559700420308 /* Note+CoreDataClass.swift in Sources */,
 				4291D8FB2BF2559700420308 /* Note+CoreDataProperties.swift in Sources */,
 				4291D8FD2BF2564200420308 /* CoreDataManager.swift in Sources */,
+				427CAE1E2C36865E00518CB4 /* DrawView.swift in Sources */,
 				124C538926CE867500FDD253 /* SceneDelegate.swift in Sources */,
 				427049742C343BF40065842E /* AlertVC+Main.swift in Sources */,
 				428174B22C00C3B90099D748 /* CollectionViewCell.swift in Sources */,
