@@ -3,7 +3,7 @@ use_frameworks!
 install! 'cocoapods', :deterministic_uuids => false
 
 target 'MyNotes' do
-  # Pods for MyNotes
+pod 'CHTCollectionViewWaterfallLayout'
 
 end
 
