@@ -22,4 +22,8 @@ public class Note: NSManagedObject {
     var dateNote: String {
         return "\(lastUpdated.format())"
     }
+    
+    var canvasDataNote: Data {
+        return canvasData
+    }
 }

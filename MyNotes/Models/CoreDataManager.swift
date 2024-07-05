@@ -47,6 +47,7 @@ extension CoreDataManager {
         note.title = ""
         note.desc = ""
         note.lastUpdated = Date()
+        note.canvasData = Data()
         save()
         
         return note
