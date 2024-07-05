@@ -102,32 +102,17 @@
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="16"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" keyboardDismissMode="onDrag" text="Note" translatesAutoresizingMaskIntoConstraints="NO" id="GV4-QR-20O" userLabel="description">
-                                <rect key="frame" x="20" y="83" width="374" height="793"/>
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <color key="textColor" systemColor="labelColor"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                                <connections>
-                                    <outlet property="delegate" destination="t1j-RP-Vt9" id="UBc-xo-Zln"/>
-                                </connections>
-                            </textView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="Qjj-pj-Zea"/>
                         <color key="backgroundColor" systemColor="systemGray6Color"/>
                         <constraints>
-                            <constraint firstItem="Qjj-pj-Zea" firstAttribute="trailing" secondItem="GV4-QR-20O" secondAttribute="trailing" constant="20" id="B6S-xl-DpK"/>
                             <constraint firstItem="Uz0-5h-cIq" firstAttribute="top" secondItem="Qjj-pj-Zea" secondAttribute="top" id="C8Z-qI-kK0"/>
                             <constraint firstItem="Qjj-pj-Zea" firstAttribute="trailing" secondItem="Uz0-5h-cIq" secondAttribute="trailing" constant="20" id="E85-du-aiG"/>
-                            <constraint firstItem="GV4-QR-20O" firstAttribute="top" secondItem="Uz0-5h-cIq" secondAttribute="bottom" id="UQa-l4-pHM"/>
                             <constraint firstItem="Uz0-5h-cIq" firstAttribute="leading" secondItem="Qjj-pj-Zea" secondAttribute="leading" constant="20" id="aQ1-LP-4u9"/>
-                            <constraint firstAttribute="bottomMargin" secondItem="GV4-QR-20O" secondAttribute="bottom" constant="-14" id="iuT-e9-1gI"/>
-                            <constraint firstItem="GV4-QR-20O" firstAttribute="leading" secondItem="Qjj-pj-Zea" secondAttribute="leading" constant="20" id="yxJ-Uv-rri"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" largeTitleDisplayMode="never" id="c12-O0-Kjl"/>
                     <connections>
-                        <outlet property="descriptionView" destination="GV4-QR-20O" id="0YK-LT-3u0"/>
                         <outlet property="titleView" destination="Uz0-5h-cIq" id="3Xn-6X-HsS"/>
                         <outlet property="titleViewHeightConstraint" destination="XeK-iZ-G7y" id="m2g-dE-U2S"/>
                     </connections>

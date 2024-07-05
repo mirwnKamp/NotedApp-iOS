@@ -2,7 +2,7 @@
 //  AlertPresentableVC+Generic.swift
 //  MyNotes
 //
-//  Created by M-STAT Myron Kampourakis on 2/7/24.
+//  Created by Myron Kampourakis on 2/7/24.
 //
 
 import UIKit

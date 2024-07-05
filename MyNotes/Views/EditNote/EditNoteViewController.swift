@@ -14,16 +14,29 @@ class EditNoteViewController: UIViewController, PKCanvasViewDelegate {
     var note: Note!
     
     @IBOutlet weak private var titleView: UITextView!
-    @IBOutlet weak private var descriptionView: UITextView!
+    private let descriptionView: UITextView = {
+        let descriptionView = UITextView.newAutoLayoutView()
+        descriptionView.backgroundColor = UIColor.clear
+        descriptionView.font = .systemFont(ofSize: 16)
+        return descriptionView
+    }()
     @IBOutlet weak var titleViewHeightConstraint: NSLayoutConstraint!
     private let drawView = DrawView.newAutoLayoutView()
     private var isDrawingEnabled = false
+    private var drawViewHeightConstraint: NSLayoutConstraint!
+    
+    private let scrollView: UIScrollView = {
+        let scrollView = UIScrollView.newAutoLayoutView()
+        scrollView.backgroundColor = UIColor.clear
+        return scrollView
+    }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
-        drawView.canvasView.delegate = self
+        setupScrollView()
         NotificationCenter.default.addObserver(self, selector: #selector(titleViewContentSizeDidChange), name: UITextView.textDidChangeNotification, object: titleView)
+        NotificationCenter.default.addObserver(self, selector: #selector(scrollViewContentSizeDidChange), name: UITextView.textDidChangeNotification, object: descriptionView)
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -36,16 +49,27 @@ class EditNoteViewController: UIViewController, PKCanvasViewDelegate {
         view.layoutIfNeeded()
     }
     
+    @objc private func scrollViewContentSizeDidChange() {
+        let descriptionSize = descriptionView.sizeThatFits(CGSize(width: descriptionView.frame.width, height: CGFloat.greatestFiniteMagnitude))
+        let drawViewHeight = drawView.bounds.height
+        let maxHeight = max(descriptionSize.height, drawViewHeight, UIScreen.main.bounds.height)
+        
+        drawViewHeightConstraint.constant = maxHeight
+        scrollView.contentSize = CGSize(width: scrollView.frame.width, height: maxHeight)
+        view.layoutIfNeeded()
+    }
+    
     // MARK: -SetupUI
     private func setupUI() {
         let backButtonImage = UIImage(systemName: "arrow.backward.circle.fill")
         let backButton = UIBarButtonItem(image: backButtonImage, style: .plain, target: self, action: #selector(backButtonTapped))
         self.navigationItem.leftBarButtonItem = backButton
-        let addButtonImage = UIImage(systemName: "cross.circle.fill")
+        let addButtonImage = UIImage(systemName: "paintpalette.fill")
         let addButton = UIBarButtonItem(image: addButtonImage, style: .plain, target: self, action: #selector(addButtonTapped))
         self.navigationItem.rightBarButtonItem = addButton
         
         titleView.isScrollEnabled = false
+        descriptionView.isScrollEnabled = false
         titleView.text = note?.titleNote
         descriptionView.text = note?.descNote
         if titleView.text.isEmpty {
@@ -64,14 +88,42 @@ class EditNoteViewController: UIViewController, PKCanvasViewDelegate {
         } else {
             drawView.canvasView.drawing = PKDrawing()
         }
-
         
         titleView.delegate = self
-        descriptionView.delegate = self
-        
-        view.addSubview(drawView)
-        drawView.fillToSuperview()
+    }
     
+    func setupScrollView() {
+        view.addSubview(scrollView)
+        scrollView.addSubview(descriptionView)
+        scrollView.addSubview(drawView)
+        let screenSize = UIScreen.main.bounds
+        drawViewHeightConstraint = drawView.heightAnchor.constraint(equalToConstant: screenSize.height)
+        drawViewHeightConstraint.isActive = true
+        let descriptionSize = descriptionView.sizeThatFits(CGSize(width: descriptionView.frame.width, height: CGFloat.greatestFiniteMagnitude))
+        let drawViewHeight = drawView.bounds.height
+        let maxHeight = max(descriptionSize.height, drawViewHeight, UIScreen.main.bounds.height)
+        
+        drawViewHeightConstraint.constant = maxHeight
+        scrollView.contentSize = CGSize(width: scrollView.frame.width, height: maxHeight)
+        NSLayoutConstraint.activate([
+            scrollView.topAnchor.constraint(equalTo: titleView.bottomAnchor, constant: 10),
+            scrollView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            scrollView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            scrollView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
+
+            descriptionView.topAnchor.constraint(equalTo: scrollView.topAnchor),
+            descriptionView.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor, constant: 20),
+            descriptionView.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor, constant: -20),
+            
+            drawView.topAnchor.constraint(equalTo: scrollView.topAnchor),
+            drawView.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor),
+            drawView.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor),
+            drawView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor),
+            drawView.widthAnchor.constraint(equalToConstant: screenSize.width)
+        ])
+
+        drawView.canvasView.delegate = self
+        descriptionView.delegate = self
         toggleDrawing(isEnabled: false)
     }
     
@@ -97,6 +149,7 @@ class EditNoteViewController: UIViewController, PKCanvasViewDelegate {
         drawView.toolPicker.addObserver(drawView.canvasView)
         drawView.canvasView.becomeFirstResponder()
         drawView.isUserInteractionEnabled = isEnabled
+        scrollView.isScrollEnabled = !isEnabled
     }
     
     // MARK: -Methods to implement
@@ -111,6 +164,14 @@ class EditNoteViewController: UIViewController, PKCanvasViewDelegate {
     
     func canvasViewDrawingDidChange(_ canvasView: PKCanvasView) {
         note.canvasData = canvasView.drawing.dataRepresentation()
+    }
+    
+    func canvasViewDidBeginUsingTool(_ canvasView: PKCanvasView) {
+        drawView.toolPicker.setVisible(false, forFirstResponder: canvasView)
+    }
+    
+    func canvasViewDidEndUsingTool(_ canvasView: PKCanvasView) {
+        drawView.toolPicker.setVisible(true, forFirstResponder: canvasView)
     }
 }
 

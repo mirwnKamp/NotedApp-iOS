@@ -24,6 +24,7 @@ class DrawView: UIView, PKCanvasViewDelegate {
     }()
     
     var drawing = PKDrawing()
+    var canvasHeightConstraint: NSLayoutConstraint!
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -37,7 +38,6 @@ class DrawView: UIView, PKCanvasViewDelegate {
     
     private func setupUI() {
         canvasView.drawing = drawing
-        
         addSubview(canvasView)
         canvasView.fillToSuperview()
     }

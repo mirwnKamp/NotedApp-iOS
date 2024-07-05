@@ -142,18 +142,18 @@ extension ListNotesViewController: UICollectionViewDelegate, UICollectionViewDat
         
         let horizontalPadding: CGFloat = 20.0
         
-        // Calculate heights of the title and description texts
-        let titleHeight = calculateHeightForText(note.title, width: width)
         let descHeight = calculateHeightForText("\(String(describing: note.lastUpdated))" + note.desc, width: width)
-        
-        // Total height calculation
-        let height = titleHeight + descHeight
+        let height = descHeight
         
         switch height {
         case ..<80 :
             return CGSize(width: width, height: height + horizontalPadding)
-        case 150...:
-            return CGSize(width: width, height: height - horizontalPadding)
+        case 80...199:
+            return CGSize(width: width, height: height + horizontalPadding * 2)
+        case 500...799:
+            return CGSize(width: width, height: height - height/8)
+        case 800...:
+            return CGSize(width: width, height: height - height/6)
         default:
             return CGSize(width: width, height: height)
         }
@@ -166,7 +166,7 @@ extension ListNotesViewController: UICollectionViewDelegate, UICollectionViewDat
     
     func calculateHeightForText(_ text: String, width: CGFloat) -> CGFloat {
         let constraintRect = CGSize(width: width, height: .greatestFiniteMagnitude)
-        let boundingBox = text.boundingRect(with: constraintRect, options: .usesLineFragmentOrigin, attributes: [.font: UIFont.systemFont(ofSize: 17)], context: nil)
+        let boundingBox = text.boundingRect(with: constraintRect, options: .usesLineFragmentOrigin, attributes: [.font: UIFont.systemFont(ofSize: 16)], context: nil)
         
         return ceil(boundingBox.height)
     }
