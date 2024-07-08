@@ -142,15 +142,9 @@ extension ListNotesViewController: UICollectionViewDelegate, UICollectionViewDat
         
         let horizontalPadding: CGFloat = 20.0
         
-        let titleHeight = calculateHeightForText(note.title, width: width)
+        let titleHeight = 20.0 // Default height for only line text at the cell
         let descHeight = calculateHeightForText("\(String(describing: note.lastUpdated))" + note.desc, width: width)
-        var height: CGFloat
-        
-        if (note.desc == "") {
-            height = titleHeight + descHeight
-        } else {
-            height = descHeight
-        }
+        let height = descHeight + titleHeight
         
         switch height {
         case ..<80 :
