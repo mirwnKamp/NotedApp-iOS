@@ -13,7 +13,7 @@ class ListNotesViewController: UIViewController, AlertPresentableVC {
     
     private let collectionView: UICollectionView = {
         let layout = CHTCollectionViewWaterfallLayout()
-        layout.itemRenderDirection = .leftToRight
+        layout.itemRenderDirection = .shortestFirst
         layout.columnCount = 2
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
         collectionView.contentInset = .init(top: 0, left: 8, bottom: 8, right: 8)
