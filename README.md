@@ -10,7 +10,7 @@ Your notes are securely stored and managed using **Core Data**, ensuring data pe
 ### **CollectionViewWaterfallLayout**
 Enjoy a visually appealing and dynamic layout for your notes, courtesy of the **CollectionViewWaterfallLayout**. This layout organizes your notes in a Pinterest-like waterfall style, making it easy to browse through your content.
 
-Source: [https://github.com/chiahsien/CHTCollectionViewWaterfallLayout]
+Source: https://github.com/chiahsien/CHTCollectionViewWaterfallLayout
 
 ### **PencilKit Support**
 Take full advantage of the **PencilKit** capabilities. Jot down notes, sketch ideas, and create diagrams effortlessly.
